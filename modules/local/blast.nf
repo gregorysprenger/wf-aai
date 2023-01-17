@@ -57,10 +57,13 @@ process BLAST {
         fi
         if [[ ! -z $AAI ]]; then
             if [[ "${AAI%.*}" -ge 0 && "${AAI%.*}" -le 100 ]]; then
-                echo "INFO: found AAI ${AAI} for $B1,$B2; skipping the comparison" >&2
+                msg "INFO: found AAI ${AAI} for $B1,$B2; skipping the comparison" >&2
                 exit 0
             fi
         fi
+
+        msg "INFO: Performing AAI on ${B1} and ${B2}."
+        msg "INFO: Using BLASTp aligner."
 
         python ${run_AAI} -1 ${filepair1} -2 ${filepair2} --name1 ${B1} --name2 ${B2} -c !{task.cpus} \
         -o "AAI--${B1},${B2}"

@@ -62,6 +62,9 @@ process DIAMOND {
             fi
         fi
 
+        msg "INFO: Performing AAI on ${B1} and ${B2}."
+        msg "INFO: Using diamond aligner."
+
         python ${run_AAI} --aligner diamond -1 ${filepair1} -2 ${filepair2} --name1 ${B1} --name2 ${B2} -c !{task.cpus} \
         -o "AAI--${B1},${B2}"
 
@@ -69,7 +72,7 @@ process DIAMOND {
         "!{task.process}":
             python: $(python --version 2>&1 | awk '{print $2}')
             biopython: $(python -c 'import Bio; print(Bio.__version__)' 2>&1)
-            blast: $(blastp -version | head -n 1 | awk '{print $2}')
+            blast: $(diamond --version | head -n 1 | awk '{print $3}')
         END_VERSIONS
         '''
 }

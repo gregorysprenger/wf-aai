@@ -29,10 +29,12 @@ process SUMMARY {
         for f in !{stats}; do
             lines=$(grep -o '%'$'\t''[0-9]' ${f} | wc -l)
             if [ ${lines} -ne 6 ]; then
-                echo "ERROR: ${f} lacks data to extract" >&2
+                msg "ERROR: ${f} lacks data to extract" >&2
                 exit 1
             fi
         done
+
+        msg "INFO: Summarizing each comparison to AAI.Summary.tab"
 
         # Summarize AAI values
         echo -n '' > AAI.Summary.tab
