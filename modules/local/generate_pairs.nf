@@ -43,7 +43,7 @@ process GENERATE_PAIRS {
 
             # Create pairs.fofn
             for file in "${PROT[@]}"; do
-                echo -e "!{query}\t${file}" >> pairs.fofn
+                echo -e "${file}\t!{query}" >> pairs.fofn
             done
 
             # Make sure there are file pairs to analyze
@@ -66,9 +66,6 @@ process GENERATE_PAIRS {
             # Script placed into bash_functions.sh due to line indention errors
             find_combinations
 
-            msg "${#COMBO_FILES[@]} combo files"
-            msg "list: ${COMBO_FILES[@]}"
-
             if [ ${#COMBO_FILES[@]} -eq 0 ]; then
                 msg 'ERROR: no file pairs to submit for analysis' >&2
                 exit 1
@@ -78,9 +75,8 @@ process GENERATE_PAIRS {
         pairs_file_length=$(awk 'END {print NR}' pairs.fofn)
         msg "INFO: Pairs file, 'pairs.fofn', created with ${pairs_file_length} pairs"
 
-        cat <<-END_VERSIONS > versions.yml
-        "!{task.process}":
-            python: $(python --version 2>&1 | awk '{print $2}')
-        END_VERSIONS
+        # Add version info to versions.yml
+        echo -e "!{task.process}" >> versions.yml
+        echo -e "    python: $(python --version 2>&1 | awk '{print $2}')" >> versions.yml
         '''
 }
