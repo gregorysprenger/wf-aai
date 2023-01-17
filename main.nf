@@ -188,12 +188,10 @@ workflow {
         input_ch = Channel.fromPath(params.refdir, checkIfExists: true)
     } else {
         input_ch = Channel.fromPath(params.inpath, checkIfExists: true)
-
     }
 
     // SETUP: Define optional input channels
     query_ch = file(params.query) // Set to null. Overwritten if parameter query is used.
-
 
     // SETUP: Define dependency channels
     ch_versions = Channel.empty()
@@ -243,9 +241,6 @@ workflow {
         // Collect all AAI stats.tab files and concatenate into one
         aai_stats_ch = aai_stats_ch.mix(ALIGN_BLAST.out.stats).collect()
     }
-
-    // Collect all AAI stats.tab files and concatenate into one
-    // aai_stats_ch = aai_stats_ch.mix(AAI.out.stats).collect()
 
     // PROCESS: Summarize AAI stats into one file
     SUMMARY (
@@ -297,5 +292,3 @@ workflow.onError {
                   """.stripMargin()
     log.info err_msg
 }
-
-
