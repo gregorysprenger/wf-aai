@@ -2,7 +2,7 @@ process SUMMARY {
 
     publishDir "${params.outpath}",
         mode: "${params.publish_dir_mode}",
-        pattern: "AAI.Summary.tab"
+        pattern: "*.tab"
     publishDir "${params.process_log_dir}",
         mode: "${params.publish_dir_mode}",
         pattern: ".command.*",
@@ -17,6 +17,7 @@ process SUMMARY {
 
     output:
         path "AAI.Summary.tab"
+        path "Num_Proteins_Per_Proteome.tab"
         path ".command.out"
         path ".command.err"
         path "versions.yml", emit: versions
@@ -58,11 +59,22 @@ process SUMMARY {
             D2=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 2p | cut -f 4 | sed 's/%//1')
 
             echo -e "$S1\t$S2\t$FRAG\t$MEAN\t$STDEV\t$F1\t$M1\t$D1\t$F2\t$M2\t$D2" >> AAI.Summary.tab
+
+            # number of proteins in each input sample
+            TotalInputProteins_S1=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 1p | cut -f 2 | cut -d \\/ -f 2)
+            TotalInputProteins_S2=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 2p | cut -f 2 | cut -d \\/ -f 2)
+            echo -e "${S1}\t${TotalInputProteins_S1}" >> Num_Proteins_Per_Proteome.tmp
+            echo -e "${S2}\t${TotalInputProteins_S2}" >> Num_Proteins_Per_Proteome.tmp
         done
 
         A='Sample\tSample\tFragments_Used_for_Bidirectional_Calc[#]\tBidirectional_AAI[%]\tBidirectional_StDev[%]'
         B='\tFragments_Used_for_Unidirectional_Calc[#]\tUnidirectional_AAI[%]\tUnidirectional_StDev[%]'
         sed -i "1i ${A}${B}${B}" AAI.Summary.tab
+
+        msg "INFO: Summarizing number of proteins per proteome"
+        awk '!seen[$0]++' Num_Proteins_Per_Proteome.tmp \
+         | sed '1i Proteome\tProteins_Predicted_from_Genome[#]' \
+         > Num_Proteins_Per_Proteome.tab
         
         cat <<-END_VERSIONS > versions.yml
         "!{task.process}":
