@@ -45,15 +45,15 @@ jobs:
         run: |
           nextflow run ${GITHUB_WORKSPACE} -profile test,docker --outdir ./results
 
-  ani:
-    name: Run pipeline with different ANI tools
+  aai:
+    name: Run pipeline with different AAI tools
     # Only run on push if this is the nf-core dev branch (merged PRs)
     if: ${{ github.event_name != 'push' || (github.event_name == 'push' && github.repository == 'gregorysprenger/wf-aai') }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Run remaining ANI tools on test profile
-        ani: [fastani, skani]
+        # Run remaining AAI tools on test profile
+        aai: [diamond]
 
         NXF_VER:
           - "latest-everything"
@@ -72,6 +72,6 @@ jobs:
         with:
           version: "${{ matrix.NXF_VER }}"
 
-      - name: Run pipeline with test data using ${{ matrix.ani }}
+      - name: Run pipeline with test data using ${{ matrix.aai }}
         run: |
-          nextflow run ${GITHUB_WORKSPACE} -profile test,docker --outdir ./results --ani ${{ matrix.ani }}
+          nextflow run ${GITHUB_WORKSPACE} -profile test,docker --outdir ./results --aai ${{ matrix.aai }}
