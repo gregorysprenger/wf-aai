@@ -5,7 +5,7 @@ lint:
     - aws.config
     - conf/igenomes.config
     - assets/multiqc_config.yml
-    - lib/WorkflowWf-ani.groovy
+    - lib/WorkflowAAI.groovy
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
     - assets/nf-core-wf-aai_logo_light.png
