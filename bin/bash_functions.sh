@@ -66,7 +66,7 @@ find_combinations()
 {
 readarray -t COMBO_FILES < <(python - <<-EOF
 import itertools, os
-with open(os.getenv('genomes'), 'r') as ifh:
+with open(os.getenv('proteomes'), 'r') as ifh:
     genome_filenames = [ln.rstrip('\\n') for ln in ifh]
 def iter_chunks(iterable, items_per_chunk=int(os.getenv('tasks_per_job'))):
     while True:
