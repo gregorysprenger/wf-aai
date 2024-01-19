@@ -42,10 +42,16 @@ process AAI_BLAST_BIOPYTHON {
     AAIb+.py \
       -1 "proteomes/!{filename1}" \
       -2 "proteomes/!{filename2}" \
+      -o . \
+      -c !{task.cpus} \
       --name1 "!{base1}" \
       --name2 "!{base2}" \
-      -c !{task.cpus} \
-      -o .
+      --length !{params.min_length} \
+      --bitscore !{params.min_bit_score} \
+      --max-ACGT !{params.max_ACGT_fraction} \
+      --decimal-places !{params.decimal_places} \
+      --min-aln-length !{params.min_two_way_alignment_length} \
+      --min-aln-fract !{params.min_two_way_alignment_fraction}
 
     cat <<-END_VERSIONS > versions.yml
     "!{task.process}":
