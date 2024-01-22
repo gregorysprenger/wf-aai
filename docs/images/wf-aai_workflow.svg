@@ -20,6 +20,42 @@
    xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2">
+    <linearGradient
+       id="linearGradient5512"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0"
+         id="stop5510" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5416"
+       inkscape:swatch="gradient">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5412" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop5414" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5249"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5247" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2889"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#24af63;stop-opacity:1;"
+         offset="0"
+         id="stop2887" />
+    </linearGradient>
     <marker
        inkscape:stockid="TriangleOutM"
        orient="auto"
@@ -246,17 +282,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.6392117"
-     inkscape:cx="338.05844"
-     inkscape:cy="218.87075"
+     inkscape:zoom="1.9098029"
+     inkscape:cx="305.79071"
+     inkscape:cy="136.92512"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="3440"
-     inkscape:window-height="1377"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1718"
+     inkscape:window-height="1368"
+     inkscape:window-x="3633"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
      showguides="true"
      inkscape:document-rotation="0"
      fit-margin-top="0"
@@ -908,14 +944,15 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:2.11667px;fill:#ffffff;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       x="89.754318"
-       y="48.335476"
-       id="text9373"><tspan
+       style="font-size:3.04811px;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-dasharray:none;stroke-opacity:1;stroke-dashoffset:0;stroke-linejoin:round;stroke-linecap:butt;paint-order:fill markers stroke"
+       x="71.000465"
+       y="55.459312"
+       id="text9373"
+       transform="scale(1.1387256,0.87817469)"><tspan
          sodipodi:role="line"
-         id="tspan9371"
-         style="font-size:2.11667px;stroke-width:0.264583"
-         x="89.754318"
-         y="48.335476">Spreadsheet</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.04811px;font-family:Candara;-inkscape-font-specification:'Candara Bold';fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-dasharray:none;stroke-opacity:1;stroke-dashoffset:0;stroke-linejoin:round;stroke-linecap:butt;paint-order:fill markers stroke"
+         x="71.000465"
+         y="55.459312"
+         id="tspan615">Spreadsheet Options</tspan></text>
   </g>
 </svg>
