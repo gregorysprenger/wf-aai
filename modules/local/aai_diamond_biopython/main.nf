@@ -1,7 +1,7 @@
 process AAI_DIAMOND_BIOPYTHON {
 
     label "process_high"
-    tag( "${base1}_${base2}" )
+    tag( "${base1}-${base2}" )
     container "gregorysprenger/diamond-biopython@sha256:89803baa3e199aaada6d55a7d8a93245ecb9494cda9f18b34ea6bab179d7db4c"
 
     input:
