@@ -4,7 +4,7 @@
 
 import groovy.text.SimpleTemplateEngine
 
-class WorkflowANI {
+class WorkflowAAI {
 
     //
     // Check and validate parameters
