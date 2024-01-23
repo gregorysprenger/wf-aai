@@ -302,13 +302,13 @@ class NfcoreTemplate {
             """\n
             ${dashedLine(monochrome_logs)}
             ${colors.blue}                       __                ${colors.reset}
-            ${colors.blue}                  |  ||_  __  /\\ |\\ || ${colors.reset}
-            ${colors.blue}                  |/\\||      /--\\| \\||${colors.reset}
+            ${colors.blue}                  |  ||_  __  /\\  /\\ | ${colors.reset}
+            ${colors.blue}                  |/\\||      /--\\/--\\|${colors.reset}
 
-            ${colors.green}       Perform Average Nucleotide Identity (ANI)
+            ${colors.green}       Perform Average Amino Acid Identity (AAI)
                             on FastA/Genbank files. ${colors.reset}
 
-            ${colors.purple}                    ${workflow.manifest.name} ${workflow_version}${colors.reset}
+            ${colors.purple}             ${workflow.manifest.name} ${workflow_version}${colors.reset}
             ${dashedLine(monochrome_logs)}
             """.stripIndent()
         )
