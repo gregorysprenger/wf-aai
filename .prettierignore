@@ -3,7 +3,7 @@ work/
 *.img
 data/
 *.pyc
-results/
+*results*
 testing/
 testing*
 .DS_Store
