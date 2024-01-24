@@ -27,7 +27,7 @@ _Note: `<SampleName>`, `<Pair1>`, and `<Pair2>` are parsed from input filenames 
 _Note: `<AAI>` is the name of the AAI tool (BLAST, DIAMOND) given to `--aai`. \[Default: BLAST\]_
 
 | Output Directory                                        | Filename                                          | Explanation                                                                            |
-|---------------------------------------------------------|---------------------------------------------------|----------------------------------------------------------------------------------------|
+| ------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | <a id="aai">AAI</a>                                     |                                                   | **AAI output directory**                                                               |
 | AAI/\<AAI\>                                             |                                                   | **Output for specified AAI tool**                                                      |
 |                                                         | proteomes.tsv                                     | List of all input proteomes when comparing all files vs each other                     |

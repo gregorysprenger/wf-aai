@@ -54,9 +54,9 @@ CONTROL_REP2,AEG588A2_S2_L002.fna
 CONTROL_REP3,AEG588A3_S3_L002.fna
 ```
 
-| Column   | Description                                                                                                                                                                                        |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample` | Custom sample name. This entry has to be unique. Spaces in sample names are automatically converted to underscores (`_`).                                                                          |
+| Column   | Description                                                                                                                                                        |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sample` | Custom sample name. This entry has to be unique. Spaces in sample names are automatically converted to underscores (`_`).                                          |
 | `file`   | Full path to FastA/Genbank file. Files must have one of the following extensions ".faa" ,".gbff" , ".gbf", ".gbk", ".gb" and can be optionally gzipped compressed. |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
