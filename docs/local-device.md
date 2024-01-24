@@ -12,7 +12,7 @@ _A schematic of the steps in the workflow._
 ## Install Worflow Locally
 
 ```
-git clone https://github.com/gregorysprenger/wf-aai.git
+git clone https://github.com/bacterial-genomics/wf-aai.git
 ```
 
 # Run Workflow

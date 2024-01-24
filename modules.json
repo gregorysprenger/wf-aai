@@ -1,6 +1,6 @@
 {
-    "name": "gregorysprenger/wf-aai",
-    "homePage": "https://github.com/gregorysprenger/wf-aai",
+    "name": "bacterial-genomics/wf-aai",
+    "homePage": "https://github.com/bacterial-genomics/wf-aai",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

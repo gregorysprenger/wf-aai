@@ -17,7 +17,7 @@
                         "size": "Large",
                         "weight": "Bolder",
                         "color": "<% if (success) { %>Good<% } else { %>Attention<%} %>",
-                        "text": "gregorysprenger/wf-aai v${version} - ${runName}",
+                        "text": "bacterial-genomics/wf-aai v${version} - ${runName}",
                         "wrap": true
                     },
                     {

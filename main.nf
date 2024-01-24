@@ -3,9 +3,9 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     wf-aai
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/gregorysprenger/wf-aai
+    Github : https://github.com/bacterial-genomics/wf-aai
 
-    Website: https://github.com/gregorysprenger/wf-aai
+    Website: https://github.com/bacterial-genomics/wf-aai
 ----------------------------------------------------------------------------------------
 */
 

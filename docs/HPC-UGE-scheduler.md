@@ -12,7 +12,7 @@ _A schematic of the steps in the workflow._
 ## Install on our HPC
 
 ```
-git clone https://github.com/gregorysprenger/wf-aai.git $LAB_HOME/workflows
+git clone https://github.com/bacterial-genomics/wf-aai.git $LAB_HOME/workflows
 ```
 
 ## Setup Singularity environment variables - For Aspen Cluster

@@ -1,6 +1,6 @@
 # ![wf-aai](docs/images/wf-aai_logo_light.png#gh-light-mode-only) ![wf-aai](docs/images/wf-aai_logo_dark.png#gh-dark-mode-only)
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/gregorysprenger/wf-aai)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bacterial-genomics/wf-aai)
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A522.04.3-23aa62.svg)](https://www.nextflow.io/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
@@ -31,14 +31,14 @@ Run the built-in test set to confirm all parts are working as-expected. It will 
 ### Pull workflow from GitHub
 
 ```
-nextflow pull gregorysprenger/wf-aai
+nextflow pull bacterial-genomics/wf-aai
 ```
 
 ### Run test workflow
 
 ```
 nextflow run \
-  gregorysprenger/wf-aai \
+  bacterial-genomics/wf-aai \
   -r main \
   -profile <docker|singularity>,test
 ```
@@ -50,14 +50,14 @@ Example command on FastAs in "new-fasta-dir" data using **BLAST** with singulari
 ### Pull workflow from GitHub
 
 ```
-nextflow pull gregorysprenger/wf-aai
+nextflow pull bacterial-genomics/wf-aai
 ```
 
 ### Run workflow
 
 ```
 nextflow run \
-  gregorysprenger/wf-aai \
+  bacterial-genomics/wf-aai \
   -r main \
   -profile singularity \
   --input new-fasta-dir \
@@ -124,7 +124,7 @@ View help menu of all workflow options:
 
 ```
 nextflow run \
-  gregorysprenger/wf-aai \
+  bacterial-genomics/wf-aai \
   -r main \
   --help \
   --show_hidden_params
