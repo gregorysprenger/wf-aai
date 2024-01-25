@@ -1,7 +1,9 @@
 .nextflow*
 work/
+data/
 results/
-.log
-*.img
-*.gz
-assets/*.img
+.DS_Store
+testing/
+testing*
+*.pyc
+singularity.cache/
