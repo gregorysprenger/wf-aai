@@ -16,8 +16,11 @@ process AAI_BLAST_BIOPYTHON {
 
     shell:
     // Get basename of input
-    base1 = filename1.split('\\.')[0].split('_genomic')[0].split('_protein')[0];
-    base2 = filename2.split('\\.')[0].split('_genomic')[0].split('_protein')[0];
+    base1 = filename1.split('\\.')[0].split('_genomic')[0].split('_protein')[0]
+    base2 = filename2.split('\\.')[0].split('_genomic')[0].split('_protein')[0]
+
+    identity = params.pocp ? "40" : params.min_percent_identity
+    fraction = params.pocp ? "50" : params.min_percent_alignment_length
     '''
     source bash_functions.sh
 
@@ -39,6 +42,8 @@ process AAI_BLAST_BIOPYTHON {
 
     msg "INFO: Performing AAI on !{base1} and !{base2}."
 
+    echo -e "fraction = !{fraction}; identity = !{identity}"
+
     AAIb+.py \
       -1 "proteomes/!{filename1}" \
       -2 "proteomes/!{filename2}" \
@@ -46,12 +51,12 @@ process AAI_BLAST_BIOPYTHON {
       -c !{task.cpus} \
       --name1 "!{base1}" \
       --name2 "!{base2}" \
+      --identity !{identity} \
+      --fraction !{fraction} \
       --length !{params.min_length} \
       --bitscore !{params.min_bit_score} \
       --max-ACGT !{params.max_ACGT_fraction} \
-      --identity !{params.min_percent_identity} \
       --decimal-places !{params.decimal_places} \
-      --fraction !{params.min_percent_alignment_length} \
       --min-aln-len !{params.min_two_way_alignment_length} \
       --min-aln-frac !{params.min_two_way_alignment_fraction}
 
