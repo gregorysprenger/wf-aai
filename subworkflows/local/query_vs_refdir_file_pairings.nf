@@ -29,11 +29,6 @@ include { INPUT_CHECK as QUERY_INPUT_CHECK                          } from "./in
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// Convert params.aai to lowercase
-def toLower(it) {
-    it.toString().toLowerCase()
-}
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN QUERY_VS_REFDIR WORKFLOW
