@@ -50,7 +50,9 @@ process AAI_DIAMOND_BIOPYTHON {
       --length !{params.min_length} \
       --bitscore !{params.min_bit_score} \
       --max-ACGT !{params.max_ACGT_fraction} \
+      --identity !{params.min_percent_identity} \
       --decimal-places !{params.decimal_places} \
+      --fraction !{params.min_percent_alignment_length} \
       --min-aln-len !{params.min_two_way_alignment_length} \
       --min-aln-frac !{params.min_two_way_alignment_fraction}
 
