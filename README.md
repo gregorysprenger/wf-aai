@@ -40,7 +40,8 @@ nextflow pull bacterial-genomics/wf-aai
 nextflow run \
   bacterial-genomics/wf-aai \
   -r main \
-  -profile <docker|singularity>,test
+  -profile <docker|singularity>,test \
+  --outdir results
 ```
 
 ## Quick Start: Run
