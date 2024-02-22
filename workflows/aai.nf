@@ -91,6 +91,7 @@ workflow AAI {
 
     // SETUP: Define empty channels to concatenate certain outputs
     ch_versions     = Channel.empty()
+    ch_aai_stats    = Channel.empty()
     ch_qc_filecheck = Channel.empty()
 
     /*
@@ -146,13 +147,8 @@ workflow AAI {
             ch_aai_pairs,
             ch_prot_files
         )
-        ch_versions = ch_versions.mix(AAI_DIAMOND_BIOPYTHON.out.versions)
-
-        // PROCESS: Summarize AAI stats into one file
-        SUMMARY_UNIX (
-            AAI_DIAMOND_BIOPYTHON.out.aai_stats.collect()
-        )
-        ch_versions = ch_versions.mix(SUMMARY_UNIX.out.versions)
+        ch_versions  = ch_versions.mix(AAI_DIAMOND_BIOPYTHON.out.versions)
+        ch_aai_stats = AAI_DIAMOND_BIOPYTHON.out.aai_stats.collect()
 
     } else {
         // PROCESS: Use BLASTp to perform AAI on each pair
@@ -160,14 +156,15 @@ workflow AAI {
             ch_aai_pairs,
             ch_prot_files
         )
-        ch_versions = ch_versions.mix(AAI_BLAST_BIOPYTHON.out.versions)
-
-        // PROCESS: Summarize AAI stats into one file
-        SUMMARY_UNIX (
-            AAI_BLAST_BIOPYTHON.out.aai_stats.collect()
-        )
-        ch_versions = ch_versions.mix(SUMMARY_UNIX.out.versions)
+        ch_versions  = ch_versions.mix(AAI_BLAST_BIOPYTHON.out.versions)
+        ch_aai_stats = AAI_BLAST_BIOPYTHON.out.aai_stats.collect()
     }
+
+    // PROCESS: Summarize AAI stats into one file
+    SUMMARY_UNIX (
+        ch_aai_stats
+    )
+    ch_versions = ch_versions.mix(SUMMARY_UNIX.out.versions)
 
 
     /*
