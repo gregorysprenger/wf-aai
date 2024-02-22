@@ -7,8 +7,8 @@ process SUMMARY_UNIX {
     path(stats)
 
     output:
-    path("AAI.Summary.tab")
-    path("Num_Proteins_Per_Proteome.tab")
+    path("Summary.AAI.tsv")
+    path("Summary.Proteins_Per_Proteome.tsv")
     path(".command.{out,err}")
     path("versions.yml")                 , emit: versions
 
@@ -25,10 +25,10 @@ process SUMMARY_UNIX {
         fi
     done
 
-    msg "INFO: Summarizing each comparison to AAI.Summary.tab"
+    msg "INFO: Summarizing each comparison to Summary.AAI"
 
     # Summarize AAI values
-    echo -n '' > AAI.Summary.tab
+    echo -n '' > Summary.AAI
     for f in !{stats}; do
         PAIR=$(basename ${f} .stats.tab | sed 's/aai\\.//1')
         S1=${PAIR##*,}
@@ -48,7 +48,7 @@ process SUMMARY_UNIX {
         M2=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 2p | cut -f 3 | sed 's/%//1')
         D2=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 2p | cut -f 4 | sed 's/%//1')
 
-        echo -e "$S1\t$S2\t$FRAG\t$MEAN\t$STDEV\t$F1\t$M1\t$D1\t$F2\t$M2\t$D2" >> AAI.Summary.tab
+        echo -e "$S1\t$S2\t$FRAG\t$MEAN\t$STDEV\t$F1\t$M1\t$D1\t$F2\t$M2\t$D2" >> Summary.AAI
 
         # number of proteins in each input sample
         TotalInputProteins_S1=$(grep -v -e ',' -e 'StDev' ${f} | sed -n 1p | cut -f 2 | cut -d \\/ -f 2)
@@ -59,12 +59,12 @@ process SUMMARY_UNIX {
 
     A='Sample\tSample\tFragments_Used_for_Bidirectional_Calc[#]\tBidirectional_AAI[%]\tBidirectional_StDev[%]'
     B='\tFragments_Used_for_Unidirectional_Calc[#]\tUnidirectional_AAI[%]\tUnidirectional_StDev[%]'
-    sed -i "1i ${A}${B}${B}" AAI.Summary.tab
+    sed -i "1i ${A}${B}${B}" Summary.AAI
 
     msg "INFO: Summarizing number of proteins per proteome"
     awk '!seen[$0]++' Num_Proteins_Per_Proteome.tmp \
       | sed '1i Proteome\tProteins_Predicted_from_Genome[#]' \
-      > Num_Proteins_Per_Proteome.tab
+      > Summary.Proteins_Per_Proteome.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "!{task.process}":
