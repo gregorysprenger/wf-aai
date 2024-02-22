@@ -166,7 +166,6 @@ workflow AAI {
     )
     ch_versions = ch_versions.mix(SUMMARY_UNIX.out.versions)
 
-
     /*
     ================================================================================
                         Collect version and QC information
