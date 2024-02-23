@@ -49,7 +49,7 @@ if (params.input && !params.query && !params.refdir) {
 //
 include { AAI_BLAST_BIOPYTHON   } from "../modules/local/aai_blast_biopython/main"
 include { AAI_DIAMOND_BIOPYTHON } from "../modules/local/aai_diamond_biopython/main"
-include { SUMMARY_UNIX          } from "../modules/local/summary_unix/main"
+include { AAI_SUMMARY_UNIX      } from "../modules/local/aai_summary_unix/main"
 
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
@@ -161,10 +161,10 @@ workflow AAI {
     }
 
     // PROCESS: Summarize AAI stats into one file
-    SUMMARY_UNIX (
+    AAI_SUMMARY_UNIX (
         ch_aai_stats
     )
-    ch_versions = ch_versions.mix(SUMMARY_UNIX.out.versions)
+    ch_versions = ch_versions.mix(AAI_SUMMARY_UNIX.out.versions)
 
     /*
     ================================================================================

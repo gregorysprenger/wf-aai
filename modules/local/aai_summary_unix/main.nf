@@ -1,4 +1,4 @@
-process SUMMARY_UNIX {
+process AAI_SUMMARY_UNIX {
 
     label "process_low"
     container "ubuntu:focal"
