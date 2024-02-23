@@ -50,6 +50,7 @@ if (params.input && !params.query && !params.refdir) {
 include { AAI_BLAST_BIOPYTHON   } from "../modules/local/aai_blast_biopython/main"
 include { AAI_DIAMOND_BIOPYTHON } from "../modules/local/aai_diamond_biopython/main"
 include { AAI_SUMMARY_UNIX      } from "../modules/local/aai_summary_unix/main"
+include { POCP_SUMMARY_UNIX     } from "../modules/local/pocp_summary_unix/main"
 
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
