@@ -19,6 +19,7 @@ process AAI_DIAMOND_BIOPYTHON {
     base1 = filename1.split('\\.')[0].split('_genomic')[0].split('_protein')[0]
     base2 = filename2.split('\\.')[0].split('_genomic')[0].split('_protein')[0]
 
+    // Set params for POCP
     identity = params.pocp ? "40" : params.min_percent_identity
     fraction = params.pocp ? "50" : params.min_percent_alignment_length
     '''
