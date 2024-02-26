@@ -52,6 +52,11 @@
                     "default": "blast",
                     "description": "Specify what algorithm should be used to compare input files.",
                     "enum": ["blast", "diamond"]
+                },
+                "pocp": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Calculate the Percentage of Conserved Proteins (POCP) between input files."
                 }
             }
         },
