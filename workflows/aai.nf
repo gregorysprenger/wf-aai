@@ -44,15 +44,18 @@ if (params.input && !params.query && !params.refdir) {
 //
 // MODULES: Local modules
 //
-include { PERFORM_AAI_BIOPYTHON } from "../modules/local/perform_aai_biopython/main"
-include { AAI_SUMMARY_UNIX      } from "../modules/local/aai_summary_unix/main"
-include { POCP_SUMMARY_UNIX     } from "../modules/local/pocp_summary_unix/main"
+include { PERFORM_AAI_BIOPYTHON           } from "../modules/local/perform_aai_biopython/main"
+include { AAI_SUMMARY_UNIX                } from "../modules/local/aai_summary_unix/main"
+include { POCP_SUMMARY_UNIX               } from "../modules/local/pocp_summary_unix/main"
+
+include { CONVERT_TSV_TO_EXCEL_PYTHON     } from "../modules/local/convert_tsv_to_excel_python/main"
+include { CREATE_EXCEL_RUN_SUMMARY_PYTHON } from "../modules/local/create_excel_run_summary_python/main"
 
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
-include { ALL_VS_ALL            } from "../subworkflows/local/all_vs_all_file_pairings"
-include { QUERY_VS_REFDIR       } from "../subworkflows/local/query_vs_refdir_file_pairings"
+include { ALL_VS_ALL                      } from "../subworkflows/local/all_vs_all_file_pairings"
+include { QUERY_VS_REFDIR                 } from "../subworkflows/local/query_vs_refdir_file_pairings"
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,9 +90,10 @@ def toLower(it) {
 workflow AAI {
 
     // SETUP: Define empty channels to concatenate certain outputs
-    ch_versions     = Channel.empty()
-    ch_aai_stats    = Channel.empty()
-    ch_qc_filecheck = Channel.empty()
+    ch_versions             = Channel.empty()
+    ch_aai_stats            = Channel.empty()
+    ch_qc_filecheck         = Channel.empty()
+    ch_output_summary_files = Channel.empty()
 
     /*
     ================================================================================
@@ -157,7 +161,8 @@ workflow AAI {
         AAI_SUMMARY_UNIX (
             ch_aai_stats
         )
-        ch_versions = ch_versions.mix(AAI_SUMMARY_UNIX.out.versions)
+        ch_versions             = ch_versions.mix(AAI_SUMMARY_UNIX.out.versions)
+        ch_output_summary_files = ch_output_summary_files.mix(AAI_SUMMARY_UNIX.out.summary)
     }
 
     if ( toLower(params.aai) in ['blast', 'diamond'] && params.pocp ) {
@@ -165,7 +170,26 @@ workflow AAI {
         POCP_SUMMARY_UNIX (
             ch_aai_stats
         )
-        ch_versions = ch_versions.mix(POCP_SUMMARY_UNIX.out.versions)
+        ch_versions             = ch_versions.mix(POCP_SUMMARY_UNIX.out.versions)
+        ch_output_summary_files = ch_output_summary_files.mix(POCP_SUMMARY_UNIX.out.summary)
+    }
+
+    /*
+    ================================================================================
+                        Convert TSV outputs to Excel XLSX
+    ================================================================================
+    */
+
+    if (params.create_excel_outputs) {
+        CREATE_EXCEL_RUN_SUMMARY_PYTHON (
+            ch_output_summary_files.collect()
+        )
+        ch_versions = ch_versions.mix(CREATE_EXCEL_RUN_SUMMARY_PYTHON.out.versions)
+
+        CONVERT_TSV_TO_EXCEL_PYTHON (
+            CREATE_EXCEL_RUN_SUMMARY_PYTHON.out.summary
+        )
+        ch_versions = ch_versions.mix(CONVERT_TSV_TO_EXCEL_PYTHON.out.versions)
     }
 
     /*

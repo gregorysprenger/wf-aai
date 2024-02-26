@@ -7,7 +7,7 @@ process POCP_SUMMARY_UNIX {
     path(stats)
 
     output:
-    path("Summary.POCP.tsv")
+    path("Summary.POCP.tsv")  , emit: summary
     path(".command.{out,err}")
     path("versions.yml")      , emit: versions
 
