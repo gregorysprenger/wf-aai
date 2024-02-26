@@ -101,6 +101,18 @@
                     "default": 0,
                     "hidden": true,
                     "description": "Minimum two-way alignment alignment length of each comparison."
+                },
+                "min_percent_identity": {
+                    "type": "string",
+                    "default": "30",
+                    "hidden": true,
+                    "description": "Minimum percent identity required between each comparison."
+                },
+                "min_percent_alignment_length": {
+                    "type": "string",
+                    "default": "70",
+                    "hidden": true,
+                    "description": "Minimum alignment length required between each comparison."
                 }
             }
         },
