@@ -10,7 +10,7 @@ process AAI_SUMMARY_UNIX {
     path("Summary.AAI.tsv")
     path("Summary.Proteins_Per_Proteome.tsv")
     path(".command.{out,err}")
-    path("versions.yml")                 , emit: versions
+    path("versions.yml")                     , emit: versions
 
     shell:
     '''
