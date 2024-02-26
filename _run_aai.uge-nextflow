@@ -12,6 +12,12 @@ else
   HPC='aspen_hpc'
 fi
 
+if [[ ${POCP} ]]; then
+  RUN_POCP="--pocp"
+else
+  RUN_POCP=""
+fi
+
 module load nextflow
 
 if [[ ${TYPE} =~ QUERY.* ]]; then
@@ -28,6 +34,7 @@ if [[ ${TYPE} =~ QUERY.* ]]; then
     --query ${QUERY} \
     --refdir ${REFERENCE} \
     --outdir ${OUT} \
+    ${RUN_POCP} \
     -resume
 
 else
@@ -43,6 +50,7 @@ else
     -profile ${HPC} \
     --input ${IN} \
     --outdir ${OUT} \
+    ${RUN_POCP} \
     -resume
 fi
 

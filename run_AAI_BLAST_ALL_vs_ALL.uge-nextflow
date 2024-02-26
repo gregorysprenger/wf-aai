@@ -311,6 +311,7 @@ if [[ ${#submitted[@]} -ge 2 ]] && \
     -v OUT=${OUT} \
     -v AAI="blast" \
     -v TYPE="ALL_vs_ALL" \
+    -v POCP=false \
     -m ba \
     -q all.q \
     -o ${OUT}/pipeline_info \
@@ -332,6 +333,7 @@ elif [[ ${#submitted[@]} -ge 2 ]] && \
     -v OUT=${OUT} \
     -v AAI="blast" \
     -v TYPE="ALL_vs_ALL" \
+    -v POCP=false \
     -m ba \
     -q all.q \
     -o ${OUT}/pipeline_info \
