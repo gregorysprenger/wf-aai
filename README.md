@@ -117,6 +117,12 @@ These are the most pertinent options for this workflow:
         Optional AAI tools
   ============================================
   --aai               Specify what algorithm should be used to compare input files. Recognized arguments are: blast, diamond. [Default: blast]
+
+
+  ============================================
+        Optional POCP summary
+  ============================================
+  --pocp              Perform percentage of conserved proteins on input files. [Default: false]
 ```
 
 #### Additional parameters
