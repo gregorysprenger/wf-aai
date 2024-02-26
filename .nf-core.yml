@@ -18,11 +18,13 @@ lint:
     - .github/CONTRIBUTING.md
     - assets/email_template.txt
     - lib/NfcoreTemplate.groovy
+    - assets/email_template.html
     - .github/workflows/branch.yml
     - assets/sendmail_template.txt
     - .github/workflows/linting.yml
     - .github/PULL_REQUEST_TEMPLATE.md
     - .github/ISSUE_TEMPLATE/bug_report.yml
+    - .github/workflows/linting_comment.yml
   multiqc_config: False
   nextflow_config:
     - manifest.name
