@@ -70,7 +70,7 @@ With `INPUT_DIRECTORY`:
 ```bash
 nextflow run \
   gregorysprenger/wf-aai \
-  -r main \
+  -r greg \
   -profile docker
   --input INPUT_DIRECTORY \
   --outdir OUTPUT_DIRECTORY
@@ -81,7 +81,7 @@ With `samplesheet.csv`:
 ```bash
 nextflow run \
   gregorysprenger/wf-aai \
-  -r main \
+  -r greg \
   -profile docker \
   --input samplesheet.csv \
   --outdir OUTPUT_DIRECTORY

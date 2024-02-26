@@ -39,7 +39,7 @@ nextflow pull gregorysprenger/wf-aai
 ```
 nextflow run \
   gregorysprenger/wf-aai \
-  -r main \
+  -r greg \
   -profile <docker|singularity>,test \
   --outdir results
 ```
@@ -59,7 +59,7 @@ nextflow pull gregorysprenger/wf-aai
 ```
 nextflow run \
   gregorysprenger/wf-aai \
-  -r main \
+  -r greg \
   -profile singularity \
   --input new-fasta-dir \
   --outdir my-results \
@@ -126,7 +126,7 @@ View help menu of all workflow options:
 ```
 nextflow run \
   gregorysprenger/wf-aai \
-  -r main \
+  -r greg \
   --help \
   --show_hidden_params
 ```
