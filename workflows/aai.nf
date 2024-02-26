@@ -35,9 +35,6 @@ if (params.input && !params.query && !params.refdir) {
 // CONFIGS: Import configs for this workflow
 //
 
-
-
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     IMPORT LOCAL MODULES/SUBWORKFLOWS
@@ -47,8 +44,7 @@ if (params.input && !params.query && !params.refdir) {
 //
 // MODULES: Local modules
 //
-include { AAI_BLAST_BIOPYTHON   } from "../modules/local/aai_blast_biopython/main"
-include { AAI_DIAMOND_BIOPYTHON } from "../modules/local/aai_diamond_biopython/main"
+include { PERFORM_AAI_BIOPYTHON } from "../modules/local/perform_aai_biopython/main"
 include { AAI_SUMMARY_UNIX      } from "../modules/local/aai_summary_unix/main"
 include { POCP_SUMMARY_UNIX     } from "../modules/local/pocp_summary_unix/main"
 
@@ -100,7 +96,7 @@ workflow AAI {
                             Preprocessing input data
     ================================================================================
     */
-    if (params.query && params.refdir && !params.input) {
+    if ( params.query && params.refdir && !params.input ) {
         //
         // Process query file and refdir directory
         //
@@ -114,9 +110,9 @@ workflow AAI {
 
         // Collect AAI data
         ch_prot_files = QUERY_VS_REFDIR.out.prot_files
-        ch_aai_pairs = QUERY_VS_REFDIR.out.aai_pairs
+        ch_aai_pairs  = QUERY_VS_REFDIR.out.aai_pairs
 
-    } else if (params.input && !params.query && !params.refdir) {
+    } else if ( params.input && !params.query && !params.refdir ) {
         //
         // Process input directory
         //
@@ -129,7 +125,7 @@ workflow AAI {
 
         // Collect AAI data
         ch_prot_files = ALL_VS_ALL.out.prot_files
-        ch_aai_pairs = ALL_VS_ALL.out.aai_pairs
+        ch_aai_pairs  = ALL_VS_ALL.out.aai_pairs
 
     } else {
         // Throw error if query, refdir, and input are combined
@@ -142,38 +138,42 @@ workflow AAI {
                             Performing AAI on input data
     ================================================================================
     */
-    if ( toLower(params.aai) == "diamond" ) {
-        // PROCESS: Use DIAMOND to perform AAI on each pair
-        AAI_DIAMOND_BIOPYTHON (
+    if ( toLower(params.aai) in ['blast', 'diamond'] ) {
+        PERFORM_AAI_BIOPYTHON (
             ch_aai_pairs,
             ch_prot_files
         )
-        ch_versions  = ch_versions.mix(AAI_DIAMOND_BIOPYTHON.out.versions)
-        ch_aai_stats = AAI_DIAMOND_BIOPYTHON.out.aai_stats.collect()
-
-    } else {
-        // PROCESS: Use BLASTp to perform AAI on each pair
-        AAI_BLAST_BIOPYTHON (
-            ch_aai_pairs,
-            ch_prot_files
-        )
-        ch_versions  = ch_versions.mix(AAI_BLAST_BIOPYTHON.out.versions)
-        ch_aai_stats = AAI_BLAST_BIOPYTHON.out.aai_stats.collect()
+        ch_versions  = ch_versions.mix(PERFORM_AAI_BIOPYTHON.out.versions)
+        ch_aai_stats = PERFORM_AAI_BIOPYTHON.out.aai_stats.collect()
     }
 
-    // PROCESS: Summarize AAI stats into one file
-    AAI_SUMMARY_UNIX (
-        ch_aai_stats
-    )
-    ch_versions = ch_versions.mix(AAI_SUMMARY_UNIX.out.versions)
+    /*
+    ================================================================================
+                            Summarizing data
+    ================================================================================
+    */
+    if ( toLower(params.aai) in ['blast', 'diamond'] ) {
+        // PROCESS: Summarize AAI stats into one file
+        AAI_SUMMARY_UNIX (
+            ch_aai_stats
+        )
+        ch_versions = ch_versions.mix(AAI_SUMMARY_UNIX.out.versions)
+    }
+
+    if ( toLower(params.aai) in ['blast', 'diamond'] && params.pocp ) {
+        // PROCESS: Summarize POCP stats into one file
+        POCP_SUMMARY_UNIX (
+            ch_aai_stats
+        )
+        ch_versions = ch_versions.mix(POCP_SUMMARY_UNIX.out.versions)
+    }
 
     /*
     ================================================================================
                         Collect version and QC information
     ================================================================================
     */
-
-    // PATTERN: Collate method for version information
+    // Collect version information
     ch_versions
         .unique()
         .collectFile(
@@ -181,7 +181,7 @@ workflow AAI {
             storeDir: params.tracedir
         )
 
-    // Collect QC file checks and concatenate into one file
+    // Collect QC file check information
     ch_qc_filecheck = ch_qc_filecheck
                         .flatten()
                         .collectFile(
