@@ -107,6 +107,12 @@ workflow QUERY_VS_REFDIR {
                     .mix(QUERY_INFILE_HANDLING_UNIX.out.prot_files)
                     .mix(REFDIR_INFILE_HANDLING_UNIX.out.prot_files)
                     .collect()
+                    .map {
+                        files ->
+                            def meta = [:]
+                            meta['aai'] = "${ch_aai_name}"
+                            [ meta, files ]
+                    }
 
     // PROCESS: Create pairings and append to pairs.fofn
     GENERATE_PAIRS_BIOPYTHON (

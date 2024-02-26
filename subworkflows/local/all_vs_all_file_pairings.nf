@@ -53,7 +53,7 @@ workflow ALL_VS_ALL {
     )
     ch_versions = ch_versions.mix(INFILE_HANDLING_UNIX.out.versions)
 
-    // Collect proteomes.fofn files and concatenate into one
+    // Collect proteomes.fofn files, remove header, and add AAI meta information
     ch_proteomes_fofn = INFILE_HANDLING_UNIX.out.proteomes
                         .collectFile(
                             name: "proteomes.fofn",
@@ -66,12 +66,23 @@ workflow ALL_VS_ALL {
                                 [ meta, file ]
                         }
 
+    // Collect proteomes.fofn files, keep header, and place in output directory
     ch_proteomes_list = INFILE_HANDLING_UNIX.out.proteomes
                         .collectFile(
                             name:       "proteomes.tsv",
                             keepHeader: true,
                             storeDir:   "${params.outdir}/AAI/${ch_aai_name}"
                         )
+
+    // Collect proteome files and add meta information
+    ch_prot_files = INFILE_HANDLING_UNIX.out.prot_files
+                        .collect()
+                        .map {
+                            files ->
+                                def meta = [:]
+                                meta['aai'] = "${ch_aai_name}"
+                                [ meta, files ]
+                        }
 
     // PROCESS: Create pairings and append to pairs.fofn
     GENERATE_PAIRS_BIOPYTHON (
@@ -88,6 +99,6 @@ workflow ALL_VS_ALL {
     emit:
     versions     = ch_versions
     aai_pairs    = ch_aai_pairs
-    prot_files   = INFILE_HANDLING_UNIX.out.prot_files.collect()
+    prot_files   = ch_prot_files
     qc_filecheck = INFILE_HANDLING_UNIX.out.qc_filecheck.collect()
 }
