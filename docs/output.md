@@ -55,10 +55,10 @@ Pairings of input files that pass the quality control check are identified and A
 <summary>Output files</summary>
 
 - `AAI/BLAST`
-  - `pairs.tsv`: List of all pairings to be performed.
-  - `queries.tsv`: List of query proteome(s) `(query vs reference panel workflow)`.
-  - `references.tsv`: List of reference proteomes `(query vs reference panel workflow)`.
-  - `proteomes.tsv`: List of input proteomes that passed quality control checks `(all vs all workflow)`.
+  - `pairs.[tsv,xlsx]`: List of all pairings to be performed.
+  - `queries.[tsv,xlsx]`: List of query proteome(s) `(query vs reference panel workflow)`.
+  - `references.[tsv,xlsx]`: List of reference proteomes `(query vs reference panel workflow)`.
+  - `proteomes.[tsv,xlsx]`: List of input proteomes that passed quality control checks `(all vs all workflow)`.
 - `AAI/BLAST/[pair1]-[pair2]`
   - `aai.[pair2],[pair1].stats.tab`: AAI summary of each pair, including the combined bidirectional AAI.
   - `blastp.[pair2],[pair1].tab`: BLAST output of each fragment of [pair2] vs reference [pair1].
@@ -74,10 +74,10 @@ Pairings of input files that pass the quality control check are identified and A
 <summary>Output files</summary>
 
 - `AAI/DIAMOND`
-  - `pairs.tsv`: List of all pairings to be performed
-  - `queries.tsv`: List of query proteome(s) `(query vs reference panel workflow)`
-  - `references.tsv`: List of reference proteomes `(query vs reference panel workflow)`
-  - `proteomes.tsv`: List of input proteomes that passed quality control checks `(all vs all workflow)`
+  - `pairs.[tsv,xlsx]`: List of all pairings to be performed
+  - `queries.[tsv,xlsx]`: List of query proteome(s) `(query vs reference panel workflow)`
+  - `references.[tsv,xlsx]`: List of reference proteomes `(query vs reference panel workflow)`
+  - `proteomes.[tsv,xlsx]`: List of input proteomes that passed quality control checks `(all vs all workflow)`
 - `AAI/DIAMOND/[pair1]-[pair2]`
   - `diamond.[pair2],[pair1].tab`: DIAMOND output of each fragment of [pair2] vs reference [pair1].
   - `diamond.[pair1],[pair2].tab`: DIAMOND output of each fragment of [pair1] vs reference [pair2].
