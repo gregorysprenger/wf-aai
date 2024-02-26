@@ -79,9 +79,9 @@ Pairings of input files that pass the quality control check are identified and A
   - `references.[tsv,xlsx]`: List of reference proteomes `(query vs reference panel workflow)`
   - `proteomes.[tsv,xlsx]`: List of input proteomes that passed quality control checks `(all vs all workflow)`
 - `AAI/DIAMOND/[pair1]-[pair2]`
+  - `aai.[pair2],[pair1].stats.tab`: AAI summary of each pair, including the combined bidirectional AAI.
   - `diamond.[pair2],[pair1].tab`: DIAMOND output of each fragment of [pair2] vs reference [pair1].
   - `diamond.[pair1],[pair2].tab`: DIAMOND output of each fragment of [pair1] vs reference [pair2].
-  - `aai.[pair2],[pair1].stats.tab`: AAI summary of each pair, including the combined bidirectional AAI.
   - `diamond.[pair2],[pair1].filt.tab`: Filtered DIAMOND output.
   - `diamond.[pair2],[pair1].filt.two-way.tab`: Filtered bidirectional DIAMOND output.
 
