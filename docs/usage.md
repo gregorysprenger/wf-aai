@@ -8,9 +8,6 @@
 - [Running the pipeline](#running-the-pipeline)
 - [Reproducibility](#reproducibility)
 - [Core Nextflow arguments](#core-nextflow-arguments)
-  - [profile](#profile)
-  - [resume](#resume)
-  - [config](#c)
 - [Custom configuration](#custom-configuration)
   - [Resource requests](#resource-requests)
   - [Updating containers (advanced users)](#updating-containers-advanced-users)
@@ -71,7 +68,7 @@ With `INPUT_DIRECTORY`:
 nextflow run \
   bacterial-genomics/wf-aai \
   -r main \
-  -profile docker
+  -profile docker \
   --input INPUT_DIRECTORY \
   --outdir OUTPUT_DIRECTORY
 ```
