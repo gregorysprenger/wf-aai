@@ -1,4 +1,9 @@
-# ![wf-aai](images/wf-aai_logo_light.png#gh-light-mode-only) ![wf-aai](images/wf-aai_logo_dark.png#gh-dark-mode-only)
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/wf-aai_logo_dark.png">
+    <img alt="bacterial-genomics/wf-aai" src="docs/images/wf-aai_logo_light.png">
+  </picture>
+</h1>
 
 ![workflow](images/wf-aai_workflow.png)
 
