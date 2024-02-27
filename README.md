@@ -7,7 +7,7 @@
 
 ![workflow](docs/images/wf-aai_workflow.png)
 
-_General schematic of the steps in the workflow_
+> _General schematic of the steps in the workflow_
 
 ## Contents
 
