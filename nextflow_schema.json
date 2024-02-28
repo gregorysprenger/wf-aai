@@ -341,11 +341,6 @@
                     "description": "Show all params when using `--help`",
                     "hidden": true,
                     "help_text": "By default, parameters set as _hidden_ in the schema are not shown on the command line when a user runs with `--help`. Specifying this option will tell the pipeline to show all parameters."
-                },
-                "schema_ignore_params": {
-                    "type": "string",
-                    "description": "Ignore warning of parameters",
-                    "default": "min_two_way_alignment_length,min_two_way_alignment_fraction,max_ACGT_fraction,tasks_per_job,min_input_filesize,excel_sheet_name,workflows,available_workflows,max_retry,qc_filecheck_log_dir,process_log_dir,run_name,sge_process_time,sge_options,sge_queue_size,sge_queue,sge_penv,profile_cache_dir,validationSchemaIgnoreParams,validationShowHiddenParams,validation-schema-ignore-params,validation-show-hidden-params"
                 }
             }
         }
