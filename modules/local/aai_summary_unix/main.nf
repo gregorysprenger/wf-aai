@@ -4,7 +4,7 @@ process AAI_SUMMARY_UNIX {
     container "ubuntu:focal"
 
     input:
-    path(stats)
+    tuple val(meta), path(stats)
 
     output:
     path("Summary.${meta.aai}.tsv")          , emit: summary

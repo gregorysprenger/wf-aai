@@ -11,10 +11,10 @@ process PERFORM_AAI_BIOPYTHON {
     tuple val(meta), path(proteomes, stageAs: 'proteomes/*')
 
     output:
+    tuple val(meta), path("aai.${base1},${base2}.stats.tab"), emit: aai_stats
     path("*.tab")
-    path("aai.${base1},${base2}.stats.tab"), emit: aai_stats
     path(".command.{out,err}")
-    path("versions.yml")                   , emit: versions
+    path("versions.yml")                                    , emit: versions
 
     shell:
     // Get basename of input
